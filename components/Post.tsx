@@ -2,12 +2,7 @@ import * as prismicH from "@prismicio/helpers";
 import { PrismicLink, PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { Heading } from "@/components/Heading";
-
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-});
+import { format } from "date-fns";
 
 const findFirstImage = (slices: any[]) => {
   const imageSlice = slices.find((slice) => slice.slice_type === "image");
@@ -55,8 +50,8 @@ export const Post = ({ post }: PostProps) => {
             <Heading>
               <PrismicText field={post.data.title} />
             </Heading>
-            <p className="font-serif italic tracking-tighter text-slate-500">
-              {date && dateFormatter.format(date)}
+            <p className="font-serif italic tracking-tighter text-zinc-600">
+              {date && format(date, "MM/dd/yyyy")}
             </p>
             {excerpt && (
               <p className="font-serif leading-relaxed md:text-lg md:leading-relaxed">

@@ -6,14 +6,8 @@ import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
 import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
-import { HorizontalDivider } from "@/components/HorizontalDivider";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-});
+import { format } from "date-fns";
 
 export type LatestPostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -35,8 +29,8 @@ const LatestPost = ({ post }: LatestPostProps) => {
           <PrismicText field={post.data.title} />
         </PrismicLink>
       </h1>
-      <p className="font-serif italic tracking-tighter text-slate-500">
-        {date && dateFormatter.format(date)}
+      <p className="font-serif italic tracking-tighter text-zinc-600">
+        {date && format(date, "MM/dd/yyy")}
       </p>
     </li>
   );
@@ -58,7 +52,7 @@ const Post = ({ post, latestPosts, navigation }: PostProps) => {
       <Bounded>
         <PrismicLink
           href="/posts"
-          className="font-semibold tracking-tight text-slate-400"
+          className="font-semibold tracking-tight text-zinc-600"
         >
           &larr; Back to posts
         </PrismicLink>
@@ -68,8 +62,8 @@ const Post = ({ post, latestPosts, navigation }: PostProps) => {
           <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-4xl">
             <PrismicText field={post.data.title} />
           </h1>
-          <p className="font-serif italic tracking-tighter text-slate-500">
-            {date && dateFormatter.format(date)}
+          <p className="font-serif italic tracking-tighter text-zinc-600">
+            {date && format(date, "MM/dd/yyy")}
           </p>
         </Bounded>
         <SliceZone slices={post.data.slices} components={components} />
@@ -77,7 +71,6 @@ const Post = ({ post, latestPosts, navigation }: PostProps) => {
       {latestPosts.length > 0 && (
         <Bounded>
           <div className="grid grid-cols-1 justify-items-center gap-16 md:gap-24">
-            <HorizontalDivider />
             <div className="w-full">
               <Heading size="2xl" className="mb-10">
                 Latest posts
