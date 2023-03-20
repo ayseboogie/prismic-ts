@@ -1,0 +1,17 @@
+{
+  "slices": {
+    "Text": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "Image": {
+      "default": {
+        "primary": {}
+      }
+    }
+  },
+  "_cts": {
+    "page": {}
+  }
+}
