@@ -1,0 +1,47 @@
+{
+  "homepage_label": {
+    "__TYPE__": "StructuredTextContent",
+    "value": [
+      {
+        "type": "paragraph",
+        "content": {
+          "text": "Elit duis voluptate sunt consectetur tempor culpa. Eiusmod sunt laboris velit ex ullamco veniam reprehenderit proident."
+        }
+      }
+    ]
+  },
+  "links": {
+    "__TYPE__": "GroupContentType",
+    "value": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "label",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Culpa proident aliquip est minim adipisicing adipisicing reprehenderit. Est officia et culpa magna nulla esse ullamco eiusmod proident aliqua occaecat qui qui consectetur."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "link",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://slicemachine.dev"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}
