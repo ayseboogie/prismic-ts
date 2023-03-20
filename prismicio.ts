@@ -4,14 +4,34 @@ import sm from "./sm.json";
 
 export const repositoryName = prismic.getRepositoryName(sm.apiEndpoint);
 
-export function createClient({
-  previewData,
-  req,
-  ...config
-}: prismicNext.CreateClientConfig = {}) {
-  const client = prismic.createClient("prismic-ts", config);
+const routes = [
+  {
+    type: "page",
+    path: "/",
+  },
+  {
+    type: "page",
+    path: "/:uid",
+  },
+  {
+    type: "post",
+    path: "/posts/:uid",
+  },
+];
 
-  prismicNext.enableAutoPreviews({ client, previewData, req });
+export const createClient = ({
+  ...config
+}: prismicNext.CreateClientConfig = {}) => {
+  const client = prismic.createClient(sm.apiEndpoint, {
+    routes,
+    ...config,
+  });
+
+  prismicNext.enableAutoPreviews({
+    client,
+    previewData: config.previewData,
+    req: config.req,
+  });
 
   return client;
-}
+};

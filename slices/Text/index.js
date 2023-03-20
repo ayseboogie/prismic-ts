@@ -1,5 +1,7 @@
 import React from "react";
+import * as prismicH from "@prismicio/helpers";
 import { PrismicRichText } from "@prismicio/react";
+import { Bounded } from "../../components/Bounded";
 
 /**
  * @typedef {import("@prismicio/client").Content.TextSlice} TextSlice
@@ -7,30 +9,13 @@ import { PrismicRichText } from "@prismicio/react";
  * @param { TextProps }
  */
 const Text = ({ slice }) => (
-  <section>
-    <span className="title">
-      {slice.primary.title ? (
-        <PrismicRichText field={slice.primary.title} />
-      ) : (
-        <h2>Template slice, update me!</h2>
-      )}
-    </span>
-    {slice.primary.description ? (
-      <PrismicRichText field={slice.primary.description} />
-    ) : (
-      <p>start by editing this slice from inside Slice Machine!</p>
+  <Bounded>
+    {prismicH.isFilled.richText(slice.primary.text) && (
+      <div className="text-sm md:text-lg tracking-widest m-auto max-w-2xl lg:max-w-4xl py-6 md:py-16 text-black">
+        <PrismicRichText field={slice.primary.text} />
+      </div>
     )}
-    <style jsx>{`
-      section {
-        max-width: 600px;
-        margin: 4em auto;
-        text-align: center;
-      }
-      .title {
-        color: #8592e0;
-      }
-    `}</style>
-  </section>
+  </Bounded>
 );
 
 export default Text;

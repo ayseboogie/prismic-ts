@@ -9,9 +9,16 @@
       "default": {
         "primary": {}
       }
+    },
+    "Quote": {
+      "default": {
+        "primary": {}
+      }
     }
   },
   "_cts": {
-    "page": {}
+    "page": {},
+    "post": {},
+    "navigation": {}
   }
 }
