@@ -24,7 +24,6 @@ export const Header = ({ navigation, uid }: HeaderProps) => {
               </PrismicLink>
             </NavItem>
             {navigation.data?.links.map((item) => {
-              console.log("item ", <PrismicRichText field={item.label} />);
               return (
                 <NavItem key={prismicH.asText(item.label)}>
                   <PrismicLink field={item.link}>

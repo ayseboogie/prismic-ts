@@ -10,7 +10,7 @@ export type LayoutConstantsProps = {
 };
 export const Layout = ({ navigation, uid, children }: LayoutConstantsProps) => {
   return (
-    <div className="bg-slate-300 min-h-screen">
+    <div className="bg-violet-300	 min-h-screen">
       <Header navigation={navigation} uid={uid} />
       <main>{children}</main>
       <Footer />
