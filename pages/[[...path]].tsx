@@ -6,6 +6,15 @@ import { components } from "@/slices";
 import { Post } from "@/components/Post";
 import { Layout } from "@/components/Layout";
 import Script from "next/script";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
+import algoliasearch from "algoliasearch";
+import Hit from "@/components/Hit";
+import { Bounded } from "@/components/Bounded";
+
+const searchClient = algoliasearch(
+  "2E4QQHBM14",
+  "ff8a7d002d8e0852607d5d79aa210ded"
+);
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -27,11 +36,21 @@ export default function Page({ page, posts, navigation }: PageProps) {
       <Layout navigation={navigation} uid={page.uid}>
         <main>
           {page.uid === "posts" && (
-            <ul className="flex flex-wrap basis-1	px-96">
-              {posts.map((post) => (
-                <Post key={post.id} post={post} />
-              ))}
-            </ul>
+            <Bounded size="widest">
+              <InstantSearch
+                searchClient={searchClient}
+                indexName="EXAMPLE_POSTS"
+              >
+                <SearchBox
+                  classNames={{
+                    form: "relative rounded-md shadow-sm flex-1 flex justify-center",
+                    submitIcon: "h-4 w-6",
+                    input: "w-10/12 h-9 rounded pl-2",
+                  }}
+                />
+                <Hits hitComponent={Hit} />
+              </InstantSearch>
+            </Bounded>
           )}
           <SliceZone slices={page.data.slices} components={components} />
         </main>
