@@ -3,16 +3,15 @@
 
 import algoliasearch from "algoliasearch";
 import * as Prismic from "@prismicio/client";
-import fetch from "node-fetch";
 import * as prismicH from "@prismicio/helpers";
 
-const repoName = "prismic-ts";
-const accessToken =
-  "MC5aQnZIb0JBQUFDQUFoaDMw.77-9eCzvv73vv70MNz3vv73vv73vv71T77-977-977-977-977-9IO-_vSnvv73vv70s77-977-9AO-_vUTvv73vv73vv73vv70";
-export const prismicClient = Prismic.createClient(repoName, {
-  fetch,
-  accessToken,
-});
+const accessToken = process.env.PRISMIC_MASTER_ACCESS_TOKEN;
+export const prismicClient = Prismic.createClient(
+  process.env.PRISMIC_REPO_NAME,
+  {
+    accessToken,
+  }
+);
 
 // Init Algolia client
 // const client = algoliasearch(
@@ -20,8 +19,8 @@ export const prismicClient = Prismic.createClient(repoName, {
 //   process.env.ALGOLIA_ADMIN_KEY
 // );
 const client = algoliasearch(
-  "QPK9HZ88FU", // Those variables are coming from your .env file!
-  "30682b12291f783492d32b6796e29aeb"
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_ADMIN_KEY
 );
 
 // QPK9HZ88FU
