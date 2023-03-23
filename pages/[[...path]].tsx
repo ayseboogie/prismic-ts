@@ -75,7 +75,7 @@ export async function getStaticProps({
 
   const navigation = await client.getSingle("navigation");
 
-  // Pass the document as prop to our page.
+  // Pass the document as prop to our page
   return {
     props: {
       navigation,
