@@ -10,12 +10,12 @@ import Hit from "@/components/Hit";
 import { Bounded } from "@/components/Bounded";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
 
-// algolia
-const searchClient = algoliasearch(
-  "QPK9HZ88FU",
-  "30682b12291f783492d32b6796e29aeb"
-);
+const APP_ID = `${process.env.REACT_APP_ALGOLIA_APP_ID}`;
+const API_KEY = `${process.env.REACT_APP_ALGOLIA_ADMIN_KEY}`;
 
+const searchClient = algoliasearch(APP_ID, API_KEY);
+
+console.log("app id ", API_KEY);
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Page({ page, posts, navigation }: PageProps) {

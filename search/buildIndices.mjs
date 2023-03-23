@@ -4,23 +4,27 @@
 import algoliasearch from "algoliasearch";
 import * as Prismic from "@prismicio/client";
 import * as prismicH from "@prismicio/helpers";
+import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config();
 
 const accessToken = process.env.PRISMIC_MASTER_ACCESS_TOKEN;
 export const prismicClient = Prismic.createClient(
   process.env.PRISMIC_REPO_NAME,
   {
+    fetch,
     accessToken,
   }
 );
 
 // Init Algolia client
 // const client = algoliasearch(
-//   process.env.ALGOLIA_APP_ID, // Those variables are coming from your .env file!
-//   process.env.ALGOLIA_ADMIN_KEY
+//   process.env.REACT_APP_ALGOLIA_APP_ID, // Those variables are coming from your .env file!
+//   process.env.REACT_APP_ALGOLIA_ADMIN_KEY
 // );
 const client = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
-  process.env.ALGOLIA_ADMIN_KEY
+  process.env.REACT_APP_ALGOLIA_APP_ID,
+  process.env.REACT_APP_ALGOLIA_ADMIN_KEY
 );
 
 // QPK9HZ88FU
