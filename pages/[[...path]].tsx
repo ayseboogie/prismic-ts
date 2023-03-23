@@ -3,9 +3,18 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
-import { Post } from "@/components/Post";
 import { Layout } from "@/components/Layout";
 import Script from "next/script";
+import algoliasearch from "algoliasearch";
+import Hit from "@/components/Hit";
+import { Bounded } from "@/components/Bounded";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
+
+// algolia
+const searchClient = algoliasearch(
+  "QPK9HZ88FU",
+  "30682b12291f783492d32b6796e29aeb"
+);
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -27,11 +36,22 @@ export default function Page({ page, posts, navigation }: PageProps) {
       <Layout navigation={navigation} uid={page.uid}>
         <main>
           {page.uid === "posts" && (
-            <ul className="flex flex-wrap basis-1	px-96">
-              {posts.map((post) => (
-                <Post key={post.id} post={post} />
-              ))}
-            </ul>
+            <Bounded size="widest">
+              <InstantSearch
+                searchClient={searchClient} // this is the Algolia client
+                indexName="EXAMPLE_POSTS" // this is your index name
+              >
+                <SearchBox
+                  classNames={{
+                    form: "relative rounded-md shadow-sm flex-1 flex justify-center",
+                    submitIcon: "h-4 w-6",
+                    input: "w-10/12 h-9 rounded pl-2",
+                  }}
+                />
+                <Hits hitComponent={Hit} />
+                {/*<Pagination />*/}
+              </InstantSearch>
+            </Bounded>
           )}
           <SliceZone slices={page.data.slices} components={components} />
         </main>
