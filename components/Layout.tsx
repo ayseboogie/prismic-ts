@@ -9,11 +9,13 @@ export type LayoutConstantsProps = {
   uid: string;
 };
 export const Layout = ({ navigation, uid, children }: LayoutConstantsProps) => {
+  const showFooter = uid === "home" || uid === "posts";
+
   return (
-    <div className="bg-violet-300	 min-h-screen">
+    <div className="bg-blue-100	 min-h-screen">
       <Header navigation={navigation} uid={uid} />
       <main>{children}</main>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
 };

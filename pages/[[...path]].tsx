@@ -27,7 +27,7 @@ export default function Page({ page, posts, navigation }: PageProps) {
       <Layout navigation={navigation} uid={page.uid}>
         <main>
           {page.uid === "posts" && (
-            <ul className="grid grid-cols-1 gap-16 items-center">
+            <ul className="flex flex-wrap basis-1	px-96">
               {posts.map((post) => (
                 <Post key={post.id} post={post} />
               ))}
