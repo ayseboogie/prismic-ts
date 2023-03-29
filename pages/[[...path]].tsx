@@ -10,6 +10,7 @@ import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
 import algoliasearch from "algoliasearch";
 import Hit from "@/components/Hit";
 import { Bounded } from "@/components/Bounded";
+import ContactForm from "@/components/Contact/ContactForm";
 
 const searchClient = algoliasearch(
   "2E4QQHBM14",
@@ -34,26 +35,25 @@ export default function Page({ page, posts, navigation }: PageProps) {
         src="https://static.cdn.prismic.io/prismic.js?new=true&repo=prismic-ts"
       />
       <Layout navigation={navigation} uid={page.uid}>
-        <main>
-          {page.uid === "posts" && (
-            <Bounded size="widest">
-              <InstantSearch
-                searchClient={searchClient}
-                indexName="EXAMPLE_POSTS"
-              >
-                <SearchBox
-                  classNames={{
-                    form: "relative rounded-md shadow-sm flex-1 flex justify-center",
-                    submitIcon: "h-4 w-6",
-                    input: "w-10/12 h-9 rounded pl-2",
-                  }}
-                />
-                <Hits hitComponent={Hit} />
-              </InstantSearch>
-            </Bounded>
-          )}
-          <SliceZone slices={page.data.slices} components={components} />
-        </main>
+        {page.uid === "contact" && <ContactForm />}
+        {page.uid === "posts" && (
+          <Bounded size="widest">
+            <InstantSearch
+              searchClient={searchClient}
+              indexName="EXAMPLE_POSTS"
+            >
+              <SearchBox
+                classNames={{
+                  form: "relative rounded-md shadow-sm flex-1 flex justify-center",
+                  submitIcon: "h-4 w-6",
+                  input: "w-10/12 h-9 rounded pl-2",
+                }}
+              />
+              <Hits hitComponent={Hit} />
+            </InstantSearch>
+          </Bounded>
+        )}
+        <SliceZone slices={page.data.slices} components={components} />
       </Layout>
     </>
   );
