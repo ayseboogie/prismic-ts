@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       },
       to: [
         {
-          email: "ayse.stinnett@gmail.com",
+          email: "your-email@gmail.com",
           name: "Your Name",
         },
       ],
